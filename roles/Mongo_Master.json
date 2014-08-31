@@ -1,0 +1,26 @@
+{
+  "name": "Mongo_Master",
+  "description": "Installs MongoDB with ReplicaSet",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "mongodb": {
+      "config": {
+	"replSet": "testing",
+	"dbpath": "/media/ephemeral0/mongodb"
+      },
+      "cluster_name": "testing"
+    }
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[mongodb::mongodb_org_repo]",
+    "recipe[base-chef::default]",
+    "recipe[mongodb::replicaset]",
+    "recipe[mongodb::mms-agent]",
+    "recipe[base-chef::newrelic]"
+  ],
+  "env_run_lists": {
+  }
+}
